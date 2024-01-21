@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background-color: #8e44ad;
+            color: #ffffff;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .header img {
+            max-width: 15%;
+            height: 15%;
+            margin-bottom: 5px;
+        }
+
+        .content {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="/static/images/prime-chat-high-resolution-logo-white.png" alt="Логотип">
+        <h1>Подтверждение по элетронной почте</h1>
+    </div>
+    <div class="content">
+        <p><strong style="color: #8e44ad;">${username}</strong>, добро пожаловать в наше мобильное приложение!</p>
+        <p>Для завершения регистрации, пожалуйста, используйте следующий код верификации:</p>
+        <h2 style="color: #8e44ad;">Ваш код: ${code}</h2>
+        <p>Этот код будет активен в течение ограниченного времени.</p>
+        <p>Благодарим за использование нашего приложения!</p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Prime Chat. Все права защищены.</p>
+    </div>
+</div>
+</body>
+</html>
