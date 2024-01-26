@@ -1,4 +1,4 @@
-package com.meikuv.chatapp.model;
+package com.meikuv.chatapp.controller.response;
 
 public enum StatusType {
     ONLINE,

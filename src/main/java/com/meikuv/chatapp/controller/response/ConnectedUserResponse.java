@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthenticationResponse {
-    private ResponseType responseType;
-    private String message;
-    private String accessToken;
-    private String refreshToken;
+public class ConnectedUserResponse {
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String email;
 }

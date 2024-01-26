@@ -1,6 +1,7 @@
 package com.meikuv.chatapp.service;
 
 import com.meikuv.chatapp.controller.request.ChangePasswordRequest;
+import com.meikuv.chatapp.controller.response.StatusType;
 import com.meikuv.chatapp.model.UserModel;
 import com.meikuv.chatapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +18,14 @@ import java.util.Optional;
 public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+
+    public Optional<UserModel> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public UserModel findByUsername(String email) {
+        return userRepository.findByUsername(email);
+    }
 
     public void changeUserPassword(ChangePasswordRequest request, Principal connectedUser) {
         UserModel user = (UserModel) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
@@ -37,10 +47,6 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Optional<UserModel> findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-
     public void enableUserAccount(String email) {
         UserModel user = findByEmail(email)
                 .orElseThrow(() ->
@@ -48,5 +54,20 @@ public class UserService {
 
         user.setEnabled(true);
         userRepository.save(user);
+    }
+
+    public void updateUserStatus(String status ,String username) {
+        UserModel user = userRepository.findByUsername(username);
+
+        if (user == null) {
+            throw new IllegalStateException("User not found");
+        }
+
+        user.setStatusType("ONLINE".equals(status) ? StatusType.ONLINE : StatusType.OFFLINE);
+        userRepository.save(user);
+    }
+
+    public List<UserModel> findConnectedUsers() {
+        return userRepository.findAllByStatusType(StatusType.ONLINE);
     }
 }

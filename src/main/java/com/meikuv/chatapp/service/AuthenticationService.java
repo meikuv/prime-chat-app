@@ -7,14 +7,12 @@ import com.meikuv.chatapp.controller.request.SignUpRequest;
 import com.meikuv.chatapp.controller.response.AuthenticationResponse;
 import com.meikuv.chatapp.controller.response.ResponseType;
 import com.meikuv.chatapp.model.RefreshTokenModel;
-import com.meikuv.chatapp.model.StatusType;
+import com.meikuv.chatapp.controller.response.StatusType;
 import com.meikuv.chatapp.model.UserModel;
 import com.meikuv.chatapp.model.VerificationModel;
 import com.meikuv.chatapp.repository.UserRepository;
 import com.meikuv.chatapp.repository.VerificationRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -112,6 +110,7 @@ public class AuthenticationService {
         return ResponseEntity.ok()
                 .body(AuthenticationResponse.builder()
                         .accessToken(jwt)
+                        .message("Successfully logged in")
                         .refreshToken(refreshToken.getToken())
                         .responseType(ResponseType.SUCCESS)
                         .build());

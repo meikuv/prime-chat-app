@@ -1,5 +1,6 @@
 package com.meikuv.chatapp.model;
 
+import com.meikuv.chatapp.controller.response.StatusType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
